@@ -22,9 +22,6 @@ jobs:
         run: ls
       - name: tmp3
         run: docker run --rm pyinstaller-windows powershell -Command "pwd"
-      - name: tmp4
-        run: docker run --rm -v D:\a\exec_command_app\exec_command_app\windows:C:\windows pyinstaller-windows powershell -Command "pwd"
-
       - name: tmp5
         run: |
             docker run -d --rm -n pyinstaller-windows pyinstaller-windows powershell -Command "ping 8.8.8.8"
