@@ -1,9 +1,12 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
+
+# Chocolateyのインストール
+RUN powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+
 # Pythonのインストール
-RUN powershell -Command "Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.8.12/python-3.8.12-amd64.exe -OutFile python-installer.exe" ; \
-    Start-Process python-installer.exe -ArgumentList '/quiet', 'InstallAllUsers=1', 'PrependPath=1' -Wait ; \
-    Remove-Item -Force python-installer.exe
+RUN powershell -Command "choco install -y python --version 3.8.12"
+
 
 # ホストマシンのコードをコンテナにコピー
 COPY ./src /src
