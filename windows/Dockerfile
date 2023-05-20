@@ -11,8 +11,8 @@ RUN powershell -Command "choco install -y python --version 3.8.10"
 
 
 # ホストマシンのコードをコンテナにコピー
-COPY ./src C:/src
-WORKDIR C:/src
+COPY ./src C:/app/src
+WORKDIR C:/app/src
 
 # 依存関係のインストール
 RUN pip install --no-cache-dir pyinstaller
