@@ -1,4 +1,4 @@
-name: Build for Linux
+name: Build for Windows
 
 on:
   push:
@@ -7,27 +7,27 @@ on:
 
 jobs:
   build-and-run:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: docker build  -f ./linux/Dockerfile -t pyinstaller-linux .
+        run: docker build  -f ./windows/Dockerfile -t pyinstaller-windows .
 
       - name: Run Docker container
         id: run-container
         run: |
-          docker run --rm -v $(pwd)/src:/src -v $(pwd)/linux:/linux \
-              pyinstaller-linux pyinstaller main.py \
+          docker run --rm -v $(pwd)/src:/src -v $(pwd)/windows:/windows \
+              pyinstaller-windows pyinstaller main.py \
               --onedir --onefile --clean \
-              --distpath /linux/dist \
-              --workpath /linux/build \
-              --specpath /linux 
+              --distpath /windows/dist \
+              --workpath /windows/build \
+              --specpath /windows 
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: result-artifact
-          path: ./linux/dist/main
+          path: ./windows/dist/main
