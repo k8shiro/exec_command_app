@@ -18,10 +18,7 @@ jobs:
 
       - name: Run Docker container
         #run: docker run --rm pyinstaller-windows powershell -Command "ls"
-        run: |
-          $workspace = "${{ github.workspace }}";
-          $workspace = $workspace.Replace("\", "/");
-          docker run --rm -v $workspace/src:C:/app/src -v $workspace/windows:C:/windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
+        run: docker run --rm -v ${PWD}/src:C:/app/src -v ${PWD}/windows:C:/windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
 
         # run: |
         #   $workspace = "${{ github.workspace }}"
