@@ -17,4 +17,4 @@ WORKDIR /app/src
 # 依存関係のインストール
 RUN pip install --no-cache-dir pyinstaller
 
-RUN powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
+#RUN powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
