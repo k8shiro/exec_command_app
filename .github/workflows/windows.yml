@@ -18,7 +18,10 @@ jobs:
 
       - name: Run Docker container
         id: run-container
-        run: docker run --rm -v ${{ github.workspace }}/src:C:/src -v ${{ github.workspace }}/windows:C:/windows pyinstaller-windows cmd /c "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
+        run: |
+          $workspace = "${{ github.workspace }}"
+          $workspace = $workspace.Replace("\", "/")
+          docker run --rm -v $workspace/src:C:/src -v $workspace/windows:C:/windows pyinstaller-windows cmd /c "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
