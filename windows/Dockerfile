@@ -1,4 +1,4 @@
-FROM python:3.8-windowsservercore
+FROM python:3.8-windowsservercore-1809
 
 # ホストマシンのコードをコンテナにコピー
 COPY ./src /src
