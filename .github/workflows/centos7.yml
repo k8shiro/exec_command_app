@@ -1,0 +1,33 @@
+name: Docker Build and Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build  -f ./centos7/Dockerfile -t pyinstaller-centos7 .
+
+      - name: Run Docker container
+        id: run-container
+        run: |
+          docker run --rm -v $(pwd)/src:/src -v $(pwd)/centos7:/centos7 \
+              pyinstaller-centos7 pyinstaller main.py \
+              --onedir --onefile --clean \
+              --distpath /centos7/dist \
+              --workpath /centos7/build \
+              --specpath /centos7 
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: result-artifact
+          path: ./centos7/dist/main
