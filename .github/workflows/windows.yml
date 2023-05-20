@@ -17,13 +17,11 @@ jobs:
         run: docker build  -f ./windows/Dockerfile -t pyinstaller-windows .
 
       - name: Run Docker container
-        run: docker run --rm pyinstaller-windows powershell -Command "ls"
-      # - name: Run Docker container
-      #   id: run-container
-      #   run: |
-      #     $workspace = "${{ github.workspace }}"
-      #     $workspace = $workspace.Replace("\", "/")
-      #     docker run --rm -v $workspace/src:C:/app/src -v $workspace/windows:C:/windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
+        #run: docker run --rm pyinstaller-windows powershell -Command "ls"
+        run: |
+          $workspace = "${{ github.workspace }}";
+          $workspace = $workspace.Replace("\", "/");
+          docker run --rm -v $workspace/src:C:/app/src -v $workspace/windows:C:/windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
 
         # run: |
         #   $workspace = "${{ github.workspace }}"
