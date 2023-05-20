@@ -16,8 +16,8 @@ jobs:
       - name: Build Docker image
         run: docker build  -f ./windows/Dockerfile -t pyinstaller-windows .
 
-    - name: Run Docker container
-      run: docker run --rm pyinstaller-windows ls
+      - name: Run Docker container
+        run: docker run --rm pyinstaller-windows ls
       # - name: Run Docker container
       #   id: run-container
       #   run: |
