@@ -20,7 +20,7 @@ jobs:
         run: echo ${{ github.workspace }}
       - name: Run Docker container
         #run: docker run --rm pyinstaller-windows powershell -Command "ls"
-        run: docker run --rm  -v d:\a\exec_command_app\exec_command_app\windows:/windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
+        run: docker run --rm  -v d:\a\exec_command_app\exec_command_app\windows:c:\windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
 
         # run: |
         #   $workspace = "${{ github.workspace }}"
