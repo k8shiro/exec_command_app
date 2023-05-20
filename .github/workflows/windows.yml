@@ -25,7 +25,7 @@ jobs:
       - name: tmp5
         run: |
             docker run -d --rm --name pyinstaller-windows pyinstaller-windows powershell -Command "ping 8.8.8.8"
-            docker cp pyinstaller-windows:C:\windows\dist\main.exe ./windows/dist/
+            docker cp pyinstaller-windows:c:\windows\dist\main.exe ./windows/dist/
       
       # - name: Run Docker container
       #   #run: docker run --rm pyinstaller-windows powershell -Command "ls"
