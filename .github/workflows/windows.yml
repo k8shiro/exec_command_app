@@ -22,6 +22,8 @@ jobs:
         run: ls
       - name: tmp3
         run: docker run --rm pyinstaller-windows powershell -Command "pwd"
+      - name: tmp4
+        run: docker run --rm -v D:\a\exec_command_app\exec_command_app\windows:C:\windows pyinstaller-windows powershell -Command "pwd"
 
       - name: Run Docker container
         #run: docker run --rm pyinstaller-windows powershell -Command "ls"
