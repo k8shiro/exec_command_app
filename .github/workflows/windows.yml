@@ -19,11 +19,11 @@ jobs:
       - name: Run Docker container
         id: run-container
         run: |
-          docker run --rm -v $(pwd)/src:/src -v $(pwd)/windows:/windows \
-              pyinstaller-windows -c \ "pyinstaller main.py \
-              --onedir --onefile --clean \
-              --distpath /windows/dist \
-              --workpath /windows/build \
+          docker run --rm -v $(pwd)/src:/src -v $(pwd)/windows:/windows ^
+              pyinstaller-windows -c "pyinstaller main.py ^
+              --onedir --onefile --clean ^
+              --distpath /windows/dist ^
+              --workpath /windows/build ^
               --specpath /windows" 
 
       - name: Upload artifact
