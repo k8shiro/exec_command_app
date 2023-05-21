@@ -27,14 +27,8 @@ jobs:
             docker run -d --rm --name pyinstaller-windows pyinstaller-windows powershell -Command "ping 8.8.8.8"
             docker cp pyinstaller-windows:/windows/dist/main.exe ${{ github.workspace }}\windows\dist\
       
-      # - name: Run Docker container
-      #   #run: docker run --rm pyinstaller-windows powershell -Command "ls"
-      #   run: docker run --rm  -v D:/a/exec_command_app/exec_command_app/windows:C:/windows pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
-
-        # run: |
-        #   $workspace = "${{ github.workspace }}"
-        #   $workspace = $workspace.Replace("\", "/")
-        #   docker run --rm -v $workspace/src:C:/src -v $workspace/windows:C:/windows pyinstaller-windows cmd /c "pyinstaller main.py --onedir --onefile --clean --distpath C:/windows/dist --workpath C:/windows/build --specpath C:/windows"
+      - name: Run Docker container
+        run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:/windows2/ pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
