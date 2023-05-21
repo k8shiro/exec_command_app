@@ -28,7 +28,7 @@ jobs:
       #       docker cp pyinstaller-windows:/windows/dist/main.exe ${{ github.workspace }}\windows\dist\
       
       - name: Run Docker container
-        run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:C:\dist\ pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
+        run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:C:\dist\ pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /dist --workpath /windows/build --specpath /windows"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
