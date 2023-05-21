@@ -15,17 +15,6 @@ jobs:
 
       - name: Build Docker image
         run: docker build  -f ./windows/Dockerfile -t pyinstaller-windows .
-
-      - name: tmp1
-        run: echo ${{ github.workspace }}
-      - name: tmp2
-        run: ls
-      # - name: tmp3
-      #   run: docker run --rm pyinstaller-windows powershell -Command "ls /windows/dist/"
-      # - name: tmp5
-      #   run: |
-      #       docker run -d --rm --name pyinstaller-windows pyinstaller-windows powershell -Command "ping 8.8.8.8"
-      #       docker cp pyinstaller-windows:/windows/dist/main.exe ${{ github.workspace }}\windows\dist\
       
       - name: Run Docker container
         run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:C:\dist\ pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /dist --workpath /windows/build --specpath /windows"
