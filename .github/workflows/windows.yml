@@ -22,13 +22,13 @@ jobs:
         run: ls
       - name: tmp3
         run: docker run --rm pyinstaller-windows powershell -Command "ls /windows/dist/"
-      - name: tmp5
-        run: |
-            docker run -d --rm --name pyinstaller-windows pyinstaller-windows powershell -Command "ping 8.8.8.8"
-            docker cp pyinstaller-windows:/windows/dist/main.exe ${{ github.workspace }}\windows\dist\
+      # - name: tmp5
+      #   run: |
+      #       docker run -d --rm --name pyinstaller-windows pyinstaller-windows powershell -Command "ping 8.8.8.8"
+      #       docker cp pyinstaller-windows:/windows/dist/main.exe ${{ github.workspace }}\windows\dist\
       
       - name: Run Docker container
-        run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:C:\windows2\ pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
+        run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:C:\windows\dist\ pyinstaller-windows powershell -Command "pyinstaller main.py --onedir --onefile --clean --distpath /windows/dist --workpath /windows/build --specpath /windows"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
